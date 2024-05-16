@@ -50,9 +50,12 @@ sitelen pona
 
 o sitelen ni: /sitelen toki
 
-sitelen pona: https://sona.pona.la/wiki/sitelen_pona/en\
-toki pona: https://tokipona.org\
-Font source: https://github.com/kreativekorp/sitelen-seli-kiwen/tree/main\
+sitelen pona: https://sona.pona.la/wiki/sitelen_pona/en
+
+toki pona: https://tokipona.org
+
+Font source: https://github.com/kreativekorp/sitelen-seli-kiwen/tree/main
+
 **More features will be added later**
 
 <p align="center">
