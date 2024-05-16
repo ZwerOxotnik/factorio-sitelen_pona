@@ -1,0 +1,3 @@
+[submodule "models/sitelen_pona"]
+	path = models/sitelen_pona
+	url = https://github.com/ZwerOxotnik/sitelen_pona_lua

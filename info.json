@@ -1,0 +1,16 @@
+{
+  "name": "sitelen_pona",
+  "version": "0.1.0",
+  "factorio_version": "1.1",
+  "title": "Sitelen pona",
+  "author": "ZwerOxotnik",
+  "contact": "zweroxotnik@gmail.com, discord:ZwerOxotnik",
+  "source": "https://github.com/ZwerOxotnik/zk-lib",
+  "homepage": "https://reddit.com/r/ZwerOxotnik",
+  "description": "o sitelen ni: /sitelen toki\n\nsitelen pona: https://sona.pona.la/wiki/sitelen_pona/en\ntoki pona: https://tokipona.org\nFont source: https://github.com/kreativekorp/sitelen-seli-kiwen/tree/main\nMore features will be added later",
+  "dependencies": [
+    "? zk-lib >= 0.10.0",
+    "? BetterCommands",
+    "(?) gvv"
+  ]
+}
