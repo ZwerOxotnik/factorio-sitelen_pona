@@ -83,6 +83,16 @@ function send_sitelen_pona_message_to_chat(message, _player)
 
 	    ::continue::
 	end
+
+	if is_sitelen_pona_part then
+		is_sitelen_pona_part = false
+		i = i + 1
+		text_parts[i] = "[/font]"
+		text_mono_parts[i] = "[/font]"
+		big_text_parts[i] = "[/font]"
+		big_text_mono_parts[i] = "[/font]"
+	end
+
 	local result_text          = {"", nickname, {"colon"}, " ", table.concat(text_parts, "")}
 	local result_mono_text     = {"", nickname, {"colon"}, " ", table.concat(text_mono_parts, "")}
 	local big_result_text      = {"", nickname, {"colon"}, " ", table.concat(big_text_parts,  "")}
