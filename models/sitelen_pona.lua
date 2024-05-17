@@ -37,35 +37,43 @@ function send_sitelen_pona_message_to_chat(message, _player)
 	local text_mono_parts = {}
 	local big_text_parts = {}
 	local big_text_mono_parts = {}
+	local is_sitelen_pona_part = false
 	local i = 0
 	for _, part in ipairs(_sitelen_pona) do
 		if part.is_new_line then
 			goto continue
 		end
 		local text = part.sitelep_pona or part.original
-		i = i + 1
 		if not part.sitelep_pona then
+			if is_sitelen_pona_part then
+				i = i + 1
+				text_parts[i] = "[/font]"
+				text_mono_parts[i] = "[/font]"
+				big_text_parts[i] = "[/font]"
+				big_text_mono_parts[i] = "[/font]"
+			end
+			i = i + 1
 			text_parts[i] = text
 			text_mono_parts[i] = text
 			big_text_parts[i] = text
 			big_text_mono_parts[i] = text
+			is_sitelen_pona_part = false
 		else
-			text_parts[i] = "[font=sitelenselikiwenjuniko_chat]"
-			text_mono_parts[i] = "[font=sitelenselikiwenmonojuniko_chat]"
-			big_text_parts[i] = "[font=big_sitelenselikiwenjuniko_chat]"
-			big_text_mono_parts[i] = "[font=big_sitelenselikiwenmonojuniko_chat]"
+			if not is_sitelen_pona_part then
+				i = i + 1
+				text_parts[i] = "[font=sitelenselikiwenjuniko_chat]"
+				text_mono_parts[i] = "[font=sitelenselikiwenmonojuniko_chat]"
+				big_text_parts[i] = "[font=big_sitelenselikiwenjuniko_chat]"
+				big_text_mono_parts[i] = "[font=big_sitelenselikiwenmonojuniko_chat]"
+			end
 			i = i + 1
 			text_parts[i] = text
 			text_mono_parts[i] = text
 			big_text_parts[i] = text
 			big_text_mono_parts[i] = text
-			i = i + 1
-			text_parts[i] = "[/font]"
-			text_mono_parts[i] = "[/font]"
-			big_text_parts[i] = "[/font]"
-			big_text_mono_parts[i] = "[/font]"
+			is_sitelen_pona_part = true
 		end
-		if part.is_add_space then
+		if  not is_sitelen_pona_part and part.is_add_space then
 			i = i + 1
 			text_parts[i] = " "
 			text_mono_parts[i] = " "
