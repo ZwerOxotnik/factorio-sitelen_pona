@@ -33,10 +33,15 @@ function send_sitelen_pona_message_to_chat(message, _player)
 	end
 
 	local _sitelen_pona = sitelen_pona.toki_pona_mute_to_sitelen_pona(message)
+	local _compounded_sitelen_pona, is_compounded = sitelen_pona.compound_sitelen_pona(_sitelen_pona)
 	local text_parts = {}
 	local text_mono_parts = {}
 	local big_text_parts = {}
 	local big_text_mono_parts = {}
+	local compounded_text_parts = {}
+	local compounded_text_mono_parts = {}
+	local compounded_big_text_parts = {}
+	local compounded_big_text_mono_parts = {}
 	local is_sitelen_pona_part = false
 	local i = 0
 	for _, part in ipairs(_sitelen_pona) do
@@ -93,10 +98,75 @@ function send_sitelen_pona_message_to_chat(message, _player)
 		big_text_mono_parts[i] = "[/font]"
 	end
 
+	if is_compounded then
+		i = 0
+		for _, part in ipairs(_compounded_sitelen_pona) do
+			if part.is_new_line then
+				goto continue
+			end
+			local text = part.sitelep_pona or part.original
+			if not part.sitelep_pona then
+				if is_sitelen_pona_part then
+					i = i + 1
+					compounded_text_parts[i] = "[/font]"
+					compounded_text_mono_parts[i] = "[/font]"
+					compounded_big_text_parts[i] = "[/font]"
+					compounded_big_text_mono_parts[i] = "[/font]"
+				end
+				i = i + 1
+				compounded_text_parts[i] = text
+				compounded_text_mono_parts[i] = text
+				compounded_big_text_parts[i] = text
+				compounded_big_text_mono_parts[i] = text
+				is_sitelen_pona_part = false
+			else
+				if not is_sitelen_pona_part then
+					i = i + 1
+					compounded_text_parts[i] = "[font=sitelenselikiwenjuniko_chat]"
+					compounded_text_mono_parts[i] = "[font=sitelenselikiwenmonojuniko_chat]"
+					compounded_big_text_parts[i] = "[font=big_sitelenselikiwenjuniko_chat]"
+					compounded_big_text_mono_parts[i] = "[font=big_sitelenselikiwenmonojuniko_chat]"
+				end
+				i = i + 1
+				compounded_text_parts[i] = text
+				compounded_text_mono_parts[i] = text
+				compounded_big_text_parts[i] = text
+				compounded_big_text_mono_parts[i] = text
+				is_sitelen_pona_part = true
+			end
+			if  not is_sitelen_pona_part and part.is_add_space then
+				i = i + 1
+				compounded_text_parts[i] = " "
+				compounded_text_mono_parts[i] = " "
+				compounded_big_text_parts[i] = " "
+				compounded_big_text_mono_parts[i] = " "
+			end
+
+			::continue::
+		end
+
+		if is_sitelen_pona_part then
+			is_sitelen_pona_part = false
+			i = i + 1
+			compounded_text_parts[i] = "[/font]"
+			compounded_text_mono_parts[i] = "[/font]"
+			compounded_big_text_parts[i] = "[/font]"
+			compounded_big_text_mono_parts[i] = "[/font]"
+		end
+	end
+
 	local result_text          = {"", nickname, {"colon"}, " ", table.concat(text_parts, "")}
 	local result_mono_text     = {"", nickname, {"colon"}, " ", table.concat(text_mono_parts, "")}
 	local big_result_text      = {"", nickname, {"colon"}, " ", table.concat(big_text_parts,  "")}
 	local big_result_mono_text = {"", nickname, {"colon"}, " ", table.concat(big_text_mono_parts, "")}
+
+	local compounded_result_text, compounded_result_mono_text, compounded_big_result_text, compounded_big_result_mono_text
+	if is_compounded then
+		compounded_result_text          = {"", nickname, {"colon"}, " ", table.concat(compounded_text_parts, "")}
+		compounded_result_mono_text     = {"", nickname, {"colon"}, " ", table.concat(compounded_text_mono_parts, "")}
+		compounded_big_result_text      = {"", nickname, {"colon"}, " ", table.concat(compounded_big_text_parts,  "")}
+		compounded_big_result_mono_text = {"", nickname, {"colon"}, " ", table.concat(compounded_big_text_mono_parts, "")}
+	end
 
 	-- TODO: add mute support
 	for _, player in pairs(game.players) do
@@ -104,18 +174,21 @@ function send_sitelen_pona_message_to_chat(message, _player)
 			goto continue
 		end
 
+		local is_compounded_text = player.mod_settings["sitelen_pona-use_compound_symbols"].value or player.mod_settings["sitelen_pona-use_complex_compound_symbols"].value
 		local is_big_text = player.mod_settings["sitelen_pona-use_enlarged_symbols"].value
-		if player.mod_settings["sitelen_pona-use_monospaced_font"].value then
-			if is_big_text then
-				player.print(big_result_mono_text)
+
+		if is_compounded_text then
+			if player.mod_settings["sitelen_pona-use_monospaced_font"].value then
+
+				player.print((is_big_text and compounded_big_result_mono_text) or compounded_result_mono_text)
 			else
-				player.print(result_mono_text)
+				player.print((is_big_text and compounded_big_result_text) or compounded_result_text)
 			end
 		else
-			if is_big_text then
-				player.print(big_result_text)
+			if player.mod_settings["sitelen_pona-use_monospaced_font"].value then
+				player.print((is_big_text and big_result_mono_text) or result_mono_text)
 			else
-				player.print(result_text)
+				player.print((is_big_text and big_result_text) or result_text)
 			end
 		end
 
