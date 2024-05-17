@@ -39,6 +39,9 @@ function send_sitelen_pona_message_to_chat(message, _player)
 	local big_text_mono_parts = {}
 	local i = 0
 	for _, part in ipairs(_sitelen_pona) do
+		if part.is_new_line then
+			goto continue
+		end
 		local text = part.sitelep_pona or part.original
 		i = i + 1
 		if not part.sitelep_pona then
@@ -69,6 +72,8 @@ function send_sitelen_pona_message_to_chat(message, _player)
 			big_text_parts[i] = " "
 			big_text_mono_parts[i] = " "
 		end
+
+	    ::continue::
 	end
 	local result_text          = {"", nickname, {"colon"}, " ", table.concat(text_parts, "")}
 	local result_mono_text     = {"", nickname, {"colon"}, " ", table.concat(text_mono_parts, "")}
