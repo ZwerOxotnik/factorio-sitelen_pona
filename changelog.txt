@@ -1,10 +1,18 @@
 ﻿---------------------------------------------------------------------------------------------------
+Version: 0.4.0
+Date: 2024-05-18
+  Features:
+    - Changes some numbers to sitelen pona
+  Bugfixes:
+    - Changes some symbols to sitelen pona
+    - Improved detection of symbols
+---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2024-05-18
   Features:
     - Added support of compound symbols
   Changes:
-    - Changes some symbols, numbers to sitelen pona
+    - Changes some symbols to sitelen pona
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: 2024-05-17

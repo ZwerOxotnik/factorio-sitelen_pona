@@ -48,8 +48,8 @@ function send_sitelen_pona_message_to_chat(message, _player)
 		if part.is_new_line then
 			goto continue
 		end
-		local text = part.sitelep_pona or part.original
-		if not part.sitelep_pona then
+		local text = part.sitelen_pona or part.original
+		if not part.sitelen_pona then
 			if is_sitelen_pona_part then
 				i = i + 1
 				text_parts[i] = "[/font]"
@@ -104,8 +104,8 @@ function send_sitelen_pona_message_to_chat(message, _player)
 			if part.is_new_line then
 				goto continue
 			end
-			local text = part.sitelep_pona or part.original
-			if not part.sitelep_pona then
+			local text = part.sitelen_pona or part.original
+			if not part.sitelen_pona then
 				if is_sitelen_pona_part then
 					i = i + 1
 					compounded_text_parts[i] = "[/font]"
@@ -177,7 +177,7 @@ function send_sitelen_pona_message_to_chat(message, _player)
 		local is_compounded_text = player.mod_settings["sitelen_pona-use_compound_symbols"].value or player.mod_settings["sitelen_pona-use_complex_compound_symbols"].value
 		local is_big_text = player.mod_settings["sitelen_pona-use_enlarged_symbols"].value
 
-		if is_compounded_text then
+		if is_compounded_text and is_compounded then
 			if player.mod_settings["sitelen_pona-use_monospaced_font"].value then
 
 				player.print((is_big_text and compounded_big_result_mono_text) or compounded_result_mono_text)
