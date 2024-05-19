@@ -215,7 +215,11 @@ local function on_player_muted(event)
 end
 
 local function on_player_unmuted(event)
-	_muted_players[event.player_index] = nil
+	local player_index = event.player_index
+	local player = game.get_player(player_index)
+	if not (player and player.valid) then return end
+
+	_muted_players[player_index] = nil
 end
 
 local function delete_player_data(event)
