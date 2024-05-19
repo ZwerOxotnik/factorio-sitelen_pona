@@ -22,13 +22,13 @@ data:extend({
 		hidden = false
 	}, {
 		type = "bool-setting",
-		name = "sitelen_pona-use_compound_symbols",
+		name = "sitelen_pona-ligature_logograms",
 		setting_type = "runtime-per-user",
 		default_value = true,
 		hidden = false
 	}, {
 		type = "bool-setting",
-		name = "sitelen_pona-use_complex_compound_symbols",
+		name = "sitelen_pona-ligature_complex_logograms",
 		setting_type = "runtime-per-user",
 		default_value = false,
 		hidden = false

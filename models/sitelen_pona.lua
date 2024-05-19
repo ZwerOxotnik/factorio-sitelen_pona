@@ -174,7 +174,7 @@ function send_sitelen_pona_message_to_chat(message, _player)
 			goto continue
 		end
 
-		local is_compounded_text = player.mod_settings["sitelen_pona-use_compound_symbols"].value or player.mod_settings["sitelen_pona-use_complex_compound_symbols"].value
+		local is_compounded_text = player.mod_settings["sitelen_pona-ligature_logograms"].value or player.mod_settings["sitelen_pona-ligature_complex_logograms"].value
 		local is_big_text = player.mod_settings["sitelen_pona-use_enlarged_symbols"].value
 
 		if is_compounded_text and is_compounded then
