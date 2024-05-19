@@ -1,4 +1,11 @@
 ﻿---------------------------------------------------------------------------------------------------
+Version: 0.5.1
+Date: 2024-05-19
+  Features:
+    - Transforms some Chinese, Roman, Latin, Bengali, Japanese, Chakma, Japonic/Koreanic, Javanese, Arabic, Korean, Hindi digits to sitelen pona
+  Bugfixes:
+    - Fixed parsing of some characters in words
+---------------------------------------------------------------------------------------------------
 Version: 0.5.0
 Date: 2024-05-19
   Bugfixes:
