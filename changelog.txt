@@ -15,7 +15,7 @@ Date: 2024-05-18
 Version: 0.3.0
 Date: 2024-05-18
   Features:
-    - Added support of compound symbols
+    - Added support of ligature
   Changes:
     - Changes some symbols to sitelen pona
 ---------------------------------------------------------------------------------------------------
