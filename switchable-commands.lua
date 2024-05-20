@@ -26,5 +26,7 @@ Returns tables of commands without functions as command "settings". All paramete
 ]]--
 ---@type table<string, BetterCommand>
 return {
-	sitelen = {player_cooldown = 1, max_input_length = 2000, is_allowed_empty_args = false, allow_for_server = true}, -- See models/sitelen_pona.lua
+	sitelen      = {player_cooldown = 1, max_input_length = 2000, is_allowed_empty_args = false, allow_for_server = true}, -- See models/sitelen_pona.lua
+	sitelen2     = {player_cooldown = 1, max_input_length = 2000, is_allowed_empty_args = false, allow_for_server = true}, -- See models/sitelen_pona.lua
+	["ilu-tuki"] = {player_cooldown = 1, max_input_length = 2000, is_allowed_empty_args = false, allow_for_server = true}, -- See models/sitelen_pona.lua
 }

@@ -1,4 +1,11 @@
 ﻿---------------------------------------------------------------------------------------------------
+Version: 0.6.0
+Date: 2024-05-20
+  Features:
+    - Added support for tuki tiki (try it with /ilu-tuki
+    - Added new font: nasin-nanpa (try it with /sitelen2 toki)
+    - /\ https://github.com/ETBCOR/nasin-nanpa
+---------------------------------------------------------------------------------------------------
 Version: 0.5.1
 Date: 2024-05-19
   Features:
