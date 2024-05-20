@@ -48,8 +48,8 @@ function send_sitelen_pona_message_to_chat(message, _player)
 		if part.is_new_line then
 			goto continue
 		end
-		local text = part.sitelen_pona or part.original
-		if not part.sitelen_pona then
+		local text = part.result_text or part.original
+		if not part.result_text then
 			if is_sitelen_pona_part then
 				i = i + 1
 				text_parts[i] = "[/font]"
@@ -104,8 +104,8 @@ function send_sitelen_pona_message_to_chat(message, _player)
 			if part.is_new_line then
 				goto continue
 			end
-			local text = part.sitelen_pona or part.original
-			if not part.sitelen_pona then
+			local text = part.result_text or part.original
+			if not part.result_text then
 				if is_sitelen_pona_part then
 					i = i + 1
 					ligatured_text_parts[i] = "[/font]"
