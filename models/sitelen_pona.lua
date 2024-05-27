@@ -1,7 +1,7 @@
 local M = {}
 
 
-local sitelen_pona = require("sitelen_pona/sitelen_pona")
+local sitelen_pona = require("sitelen_pona/main")
 
 ---@type table<string, uint> https://lua-api.factorio.com/latest/LuaBootstrap.html#LuaBootstrap.generate_event_name
 local custom_events = {
@@ -58,7 +58,7 @@ function send_transripted_message_to_chat(message, _player, language, font)
 	local ligatured_text_mono_parts = {}
 	local ligatured_big_text_parts = {}
 	local ligatured_big_text_mono_parts = {}
-	local is_sitelen_pona_part = false
+	local is_ConScript_part = false
 	local i = 0
 	for _, part in ipairs(_sitelen_pona) do
 		if part.is_new_line then
@@ -66,7 +66,7 @@ function send_transripted_message_to_chat(message, _player, language, font)
 		end
 		local text = part.result_text or part.original
 		if not part.result_text then
-			if is_sitelen_pona_part then
+			if is_ConScript_part then
 				i = i + 1
 				big_text_parts[i] = "[/font]"
 				text_parts[i]     = "[/font]"
@@ -82,9 +82,9 @@ function send_transripted_message_to_chat(message, _player, language, font)
 				big_text_mono_parts[i] = text
 				text_mono_parts[i]     = text
 			end
-			is_sitelen_pona_part = false
+			is_ConScript_part = false
 		else
-			if not is_sitelen_pona_part then
+			if not is_ConScript_part then
 				i = i + 1
 				big_text_parts[i] = FONT_DATA.big_chat
 				text_parts[i]     = FONT_DATA.chat
@@ -100,9 +100,9 @@ function send_transripted_message_to_chat(message, _player, language, font)
 				big_text_mono_parts[i] = text
 				text_mono_parts[i]     = text
 			end
-			is_sitelen_pona_part = true
+			is_ConScript_part = true
 		end
-		if  not is_sitelen_pona_part and part.is_add_space then
+		if not is_ConScript_part and part.is_add_space then
 			i = i + 1
 			big_text_parts[i] = " "
 			text_parts[i]     = " "
@@ -115,8 +115,8 @@ function send_transripted_message_to_chat(message, _player, language, font)
 	    ::continue::
 	end
 
-	if is_sitelen_pona_part then
-		is_sitelen_pona_part = false
+	if is_ConScript_part then
+		is_ConScript_part = false
 		i = i + 1
 		big_text_parts[i] = "[/font]"
 		text_parts[i]     = "[/font]"
@@ -134,7 +134,7 @@ function send_transripted_message_to_chat(message, _player, language, font)
 			end
 			local text = part.result_text or part.original
 			if not part.result_text then
-				if is_sitelen_pona_part then
+				if is_ConScript_part then
 					i = i + 1
 					ligatured_big_text_parts[i] = "[/font]"
 					ligatured_text_parts[i]     = "[/font]"
@@ -150,9 +150,9 @@ function send_transripted_message_to_chat(message, _player, language, font)
 					ligatured_big_text_mono_parts[i] = text
 					ligatured_text_mono_parts[i]     = text
 				end
-				is_sitelen_pona_part = false
+				is_ConScript_part = false
 			else
-				if not is_sitelen_pona_part then
+				if not is_ConScript_part then
 					i = i + 1
 					ligatured_big_text_parts[i] = FONT_DATA.big_chat
 					ligatured_text_parts[i]     = FONT_DATA.chat
@@ -168,9 +168,10 @@ function send_transripted_message_to_chat(message, _player, language, font)
 					ligatured_big_text_mono_parts[i] = text
 					ligatured_text_mono_parts[i]     = text
 				end
-				is_sitelen_pona_part = true
+				is_ConScript_part = true
 			end
-			if  not is_sitelen_pona_part and part.is_add_space then
+
+			if not is_ConScript_part and part.is_add_space then
 				i = i + 1
 				ligatured_big_text_parts[i] = " "
 				ligatured_text_parts[i]     = " "
@@ -183,8 +184,8 @@ function send_transripted_message_to_chat(message, _player, language, font)
 			::continue::
 		end
 
-		if is_sitelen_pona_part then
-			is_sitelen_pona_part = false
+		if is_ConScript_part then
+			is_ConScript_part = false
 			i = i + 1
 			ligatured_big_text_parts[i] = "[/font]"
 			ligatured_text_parts[i]     = "[/font]"
