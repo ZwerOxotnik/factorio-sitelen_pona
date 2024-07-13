@@ -1,4 +1,11 @@
 ﻿---------------------------------------------------------------------------------------------------
+Version: 0.7.0
+Date: 2024-07-13
+  Features:
+    - Added Japan and Simplified Chinese transcription (warning: it doesn't properly parse yet, so write with space between such characters)
+  Bugfixes:
+    - Improved Greek transcription
+---------------------------------------------------------------------------------------------------
 Version: 0.6.2
 Date: 2024-05-27
   Bugfixes:
