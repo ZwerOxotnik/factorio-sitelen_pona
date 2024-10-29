@@ -9,7 +9,7 @@ local custom_events = {
 }
 
 --#region Global data
-local _muted_players
+local __muted_players
 --#endregion
 
 
@@ -39,7 +39,7 @@ local FONT_NAMES = {
 ---@return boolean?, boolean? # is valid players, is player muted
 function send_transripted_message_to_chat(message, _player, language, font)
 	if _player ~= nil and not _player.valid then return false, false end
-	if _muted_players[_player.index]        then return false, true end
+	if __muted_players[_player.index]       then return false, true end
 
 	local nickname = "SERVER"
 	if _player then
@@ -257,7 +257,7 @@ local function on_player_muted(event)
 	local player = game.get_player(event.player_index)
 	if not (player and player.valid) then return end
 
-	_muted_players[event.player_index] = true
+	__muted_players[event.player_index] = true
 end
 
 local function on_player_unmuted(event)
@@ -265,11 +265,11 @@ local function on_player_unmuted(event)
 	local player = game.get_player(player_index)
 	if not (player and player.valid) then return end
 
-	_muted_players[player_index] = nil
+	__muted_players[player_index] = nil
 end
 
 local function delete_player_data(event)
-	_muted_players[event.player_index] = nil
+	__muted_players[event.player_index] = nil
 end
 
 --#endregion
@@ -330,17 +330,17 @@ remote.add_interface("sitelen_pona", interface)
 
 
 local function link_data()
-	_muted_players = global.muted_players
+	__muted_players = storage.muted_players
 end
 
 local function update_global_data()
-	global.muted_players = global.muted_players or {}
+	storage.muted_players = storage.muted_players or {}
 
 	link_data()
 
-	for player_index in pairs(_muted_players) do
+	for player_index in pairs(__muted_players) do
 		if not game.get_player(player_index) then
-			_muted_players[player_index] = nil
+			__muted_players[player_index] = nil
 		end
 	end
 end
